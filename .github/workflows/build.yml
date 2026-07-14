@@ -1,4 +1,4 @@
-name: Build Android APK
+name: Build Android AAB
 
 on:
   push:
@@ -25,13 +25,13 @@ jobs:
         npx cap add android
         npx cap copy
 
-    - name: Kompilasi Menjadi APK
+    - name: Kompilasi Menjadi AAB (Release)
       run: |
         cd android
-        ./gradlew assembleDebug
+        ./gradlew bundleRelease
 
-    - name: Simpan Hasil APK
+    - name: Simpan Hasil AAB
       uses: actions/upload-artifact@v4
       with:
-        name: LaporanMandiri-APK
-        path: android/app/build/outputs/apk/debug/app-debug.apk
+        name: LaporanMandiri-AAB
+        path: android/app/build/outputs/bundle/release/app-release.aab
